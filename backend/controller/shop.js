@@ -44,8 +44,8 @@ router.post("/create-shop", upload.single("file"), async (req, res, next) => {
 
     const activationToken = createActivationToken(seller);
 
-    const activationUrl = `https://eshop-tutorial-cefl.vercel.app/seller/activation/${activationToken}`;
-
+    const activationUrl = `http://localhost:3000/seller/activation/${activationToken}`;
+    console.log("activationUrl", activationUrl);
     try {
       await sendMail({
         email: seller.email,
@@ -107,10 +107,12 @@ router.post(
 
       sendShopToken(seller, 201, res);
     } catch (error) {
+      console.log("error", error);
       return next(new ErrorHandler(error.message, 500));
     }
   })
 );
+// end activity user
 
 // login shop
 router.post(
@@ -123,6 +125,7 @@ router.post(
         return next(new ErrorHandler("Please provide the all fields!", 400));
       }
 
+      // const user = await Shop.findOne({ email }).select("+password");
       const user = await Shop.findOne({ email }).select("+password");
 
       if (!user) {
@@ -266,7 +269,7 @@ router.put(
 router.get(
   "/admin-all-sellers",
   isAuthenticated,
-  isAdmin("Admin"),
+  isAdmin("Admin"), //Check is Admin
   catchAsyncErrors(async (req, res, next) => {
     try {
       const sellers = await Shop.find().sort({

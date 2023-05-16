@@ -15,7 +15,6 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
     const userEmail = await User.findOne({ email });
-
     if (userEmail) {
       const filename = req.file.filename;
       const filePath = `uploads/${filename}`;
@@ -37,11 +36,12 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
       password: password,
       avatar: fileUrl,
     };
-
     const activationToken = createActivationToken(user);
 
-    const activationUrl = `https://eshop-tutorial-cefl.vercel.app/activation/${activationToken}`;
-
+    const activationUrl = `http://localhost:3000/activation/${activationToken}`;
+    // const activationUrl = `https://eshop-tutorial-cefl.vercel.app/activation/${activationToken}`;
+    // console.log("activationUrl", activationUrl);
+    console.log(activationUrl);
     try {
       await sendMail({
         email: user.email,
@@ -53,9 +53,11 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
         message: `please check your email:- ${user.email} to activate your account!`,
       });
     } catch (error) {
+      console.log("error", error);
       return next(new ErrorHandler(error.message, 500));
     }
   } catch (error) {
+    console.log("error", error);
     return next(new ErrorHandler(error.message, 400));
   }
 });
