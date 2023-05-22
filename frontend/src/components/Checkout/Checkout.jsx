@@ -195,7 +195,7 @@ const ShippingInfo = ({
               className={`${styles.input} !w-[95%]`}
             />
           </div>
-          <div className="w-[50%]">
+          {/* <div className="w-[50%]">
             <label className="block pb-2">Zip Code</label>
             <input
               type="number"
@@ -204,7 +204,7 @@ const ShippingInfo = ({
               required
               className={`${styles.input}`}
             />
-          </div>
+          </div> */}
         </div>
 
         <div className="w-full flex pb-3">
