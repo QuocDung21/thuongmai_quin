@@ -103,14 +103,14 @@ const EventCard = ({ active, data }) => {
     >
       <Card className="flex-row w-full max-w-[48rem]">
         <CardHeader
-          shadow={false}
-          floated={false}
+        shadow={false}
+          floated={true}
           className="w-2/5 shrink-0 m-0 rounded-r-none"
         >
           <img
             src={`${backend_url}${data?.images[0]}`}
             alt="image"
-            className="w-full h-[80%] object-cover"
+            className="w-full h-full object-cover"
           />
         </CardHeader>
         <CardBody>
@@ -122,21 +122,31 @@ const EventCard = ({ active, data }) => {
             {data?.originalPrice}$
           </Typography>
           <Typography variant="h6" color="blue-gray" className="mb-2">
-            
+            {data?.discountPrice}$
+          </Typography>
+          <Typography variant="h6" color="blue-gray" className="mb-2">
+            {data?.sold_out} sold
           </Typography>
           <Typography color="gray" className="font-normal mb-8">
             {data?.description}
           </Typography>
-          <Link to="#" className="inline-block">
+          <Link
+            to={`/product/${data?._id}?isEvent=true`}
+            className="inline-block"
+          >
             <Button variant="text" className="flex items-center gap-2">
               See Details
             </Button>
           </Link>
-          <Link to="#" className="inline-block">
-            <Button variant="text" className="flex items-center gap-2">
+          <div className="inline-block">
+            <Button
+              onClick={() => addToCartHandler(data)}
+              variant="text"
+              className="flex items-center gap-2"
+            >
               Add to cart
             </Button>
-          </Link>
+          </div>
         </CardBody>
       </Card>
     </div>
