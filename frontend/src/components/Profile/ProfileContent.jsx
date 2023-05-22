@@ -674,7 +674,7 @@ const Address = () => {
                     />
                   </div>
 
-                  <div className="w-full pb-2">
+                  {/* <div className="w-full pb-2">
                     <label className="block pb-2">Zip Code</label>
                     <input
                       type="number"
@@ -683,7 +683,7 @@ const Address = () => {
                       value={zipCode}
                       onChange={(e) => setZipCode(e.target.value)}
                     />
-                  </div>
+                  </div> */}
 
                   <div className="w-full pb-2">
                     <label className="block pb-2">Address Type</label>

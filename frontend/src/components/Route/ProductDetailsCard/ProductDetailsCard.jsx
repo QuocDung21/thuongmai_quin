@@ -120,17 +120,26 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                 <p>{data.description}</p>
 
                 <div className="flex pt-3">
-                  <h4 className={`${styles.productDiscountPrice}`}>
-                    {data.discountPrice}$
+                <h4 className={`${styles.productDiscountPrice}`}>
+                  {new Intl.NumberFormat({
+                          style: "currency",
+                          currency: "VND",
+                        }).format(data.discountPrice)}{" "}
+                        VNĐ
                   </h4>
                   <h3 className={`${styles.price}`}>
-                    {data.originalPrice ? data.originalPrice + "$" : null}
+                    {data.originalPrice ? 
+                    new Intl.NumberFormat({
+                          style: "currency",
+                          currency: "VND",
+                        }).format(data.originalPrice)
+                          + "VNĐ" : null}
                   </h3>
                 </div>
                 <div className="flex items-center mt-12 justify-between pr-3">
                   <div>
                     <button
-                      className="bg-gradient-to-r from-teal-400 to-teal-500 text-white font-bold rounded-l px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
+                      className="bg-[#1C6528] text-white font-bold rounded-l px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
                       onClick={decrementCount}
                     >
                       -
@@ -139,7 +148,7 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                       {count}
                     </span>
                     <button
-                      className="bg-gradient-to-r from-teal-400 to-teal-500 text-white font-bold rounded-l px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
+                      className="bg-[#1C6528] text-white font-bold rounded-r px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
                       onClick={incrementCount}
                     >
                       +
