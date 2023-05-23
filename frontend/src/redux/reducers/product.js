@@ -7,6 +7,7 @@ const initialState = {
 export const productReducer = createReducer(initialState, {
   productCreateRequest: (state) => {
     state.isLoading = true;
+    
   },
   productCreateSuccess: (state, action) => {
     state.isLoading = false;
