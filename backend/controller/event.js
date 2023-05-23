@@ -58,7 +58,7 @@ router.get(
   catchAsyncErrors(async (req, res, next) => {
     try {
       const events = await Event.find({ shopId: req.params.id });
-
+      console.log(events);
       res.status(201).json({
         success: true,
         events,
