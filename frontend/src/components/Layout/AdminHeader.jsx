@@ -15,9 +15,10 @@ const AdminHeader = () => {
          <div className="w-full h-[80px] bg-white shadow sticky top-0 left-0 z-30 flex items-center justify-between px-4">
       <div>
         <Link to="/">
-          <img
+          <img 
             src={logo}
             alt=""
+            className="w-[140px] h-[75px]"
           />
         </Link>
       </div>
