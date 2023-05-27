@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addTocart } from "../../redux/actions/cart";
 import { toast } from "react-toastify";
+import style from "./style.module.css";
 import {
   Card,
   CardHeader,
@@ -119,33 +120,49 @@ const EventCard = ({ active, data }) => {
             {data?.name}
           </Typography>
           <Typography variant="h6" color="blue-gray" className="mb-2">
-            {data?.originalPrice}$
+          <h4 className={`${styles.price}`}>
+                {data.originalPrice
+                  ? new Intl.NumberFormat({
+                      style: "currency",
+                      currency: "VND",
+                    }).format(data.originalPrice) + "VNĐ"
+                  : null}
+              </h4>
           </Typography>
           <Typography variant="h6" color="blue-gray" className="mb-2">
-            {data?.discountPrice}$
+          <h5 className={`${styles.productDiscountPrice}`}>
+                {new Intl.NumberFormat({
+                  style: "currency",
+                  currency: "VND",
+                }).format(data.discountPrice)}{" "}
+                VNĐ
+              </h5>
           </Typography>
           <Typography variant="h6" color="blue-gray" className="mb-2">
             {data?.sold_out} sold
           </Typography>
+          <div className={style.an}>
           <Typography color="gray" className="font-normal mb-8">
             {data?.description}
-          </Typography>
+          </Typography></div>
           <Link
             to={`/product/${data?._id}?isEvent=true`}
-            className="inline-block"
+            className="inline-block m-2"
           >
-            <Button variant="text" className="flex items-center gap-2">
-              See Details
-            </Button>
+            <input
+              className={`w-[150px] h-[40px] text-[17px] border border-[#1C6528] text-center bg-[#1C6528] text-white rounded-[3px] mt-8 cursor-pointer`}
+              required
+              value="See Details"
+              type="submit"
+            />
           </Link>
-          <div className="inline-block">
-            <Button
-              onClick={() => addToCartHandler(data)}
-              variant="text"
-              className="flex items-center gap-2"
-            >
-              Add to cart
-            </Button>
+          <div className="inline-block" >
+          <input
+              className={`w-[150px] h-[40px] text-[17px] border border-[#1C6528] text-center bg-[#1C6528] text-white rounded-[3px] mt-8 cursor-pointer`}
+              required
+              value="Add to card"
+              type="submit"
+            />
           </div>
         </CardBody>
       </Card>
