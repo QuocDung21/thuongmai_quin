@@ -18,6 +18,7 @@ const AdminHeader = () => {
           <img
             src={logo}
             alt=""
+            className="w-[140px] h-[75px]"
           />
         </Link>
       </div>

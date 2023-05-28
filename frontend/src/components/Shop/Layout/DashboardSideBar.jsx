@@ -21,7 +21,7 @@ const DashboardSideBar = ({ active }) => {
           />
           <h5
             className={`hidden 800px:block pl-2 text-[18px] font-[400] ${
-              active === 1 ? "text-[crimson]" : "text-white"
+              active === 1 ? "text-[#E57C23]" : "text-white"
             }`}
           >
             Dashboard
